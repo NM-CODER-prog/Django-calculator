@@ -1,0 +1,1023 @@
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF=8">
+    <meta name="viewport" content="width-device-width",initial-scale-1.0*>
+    <title> Django calculator</title>
+</head>
+<body>
+    <h1>calculater</h1>
+    <form method='post'>
+        {% csrf_token %}
+        <label for='finput'>First number </label> <br>
+        <input
+            type="text"
+            id="finput"
+            name='a'
+            placeholder="Enter the first number"
+        >
+        <br><br>
+        <label for="sinput">second number</label> <br>
+        <input
+              type="text"
+              id="sinput"
+              name="b"
+              placeholder="Enter the second number"
+              >
+        <br><br>
+        <label for ="opr">Select operator</label><br>
+        <select name="opr" id="opr">
+            <option value="+">Addition(+)</option>
+            <option value="-">Subtraction(-)</option>
+            <option value="*">Multiplication(*)</option>
+            <option value="**">Exponent(**)</option>
+        <select>
+        <br><br>
+        <button type ="submit">Calculate</button><br>
+        <label>Result</label><br>
+        <input
+             type="text"
+             value="{{solution}}"
+             placeholder="Result"
+             >
+     </form>
+</body>
+</html>
+---->
+
+
+
+<!---<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django Calculator</title>
+
+    <!-- INTERNAL CSS STARTS HERE 
+    <style>
+        /* Modern Reset and Font Settings */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Centered Layout Background */
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* Calculator Form Container */
+        form {
+            background-color: #ffffff;
+            padding: 30px 25px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 380px;
+        }
+
+        /* Title Styling */
+        h1 {
+            color: #ffffff;
+            margin-bottom: 20px;
+            font-weight: 600;
+            text-transform: capitalize;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Labels */
+        label {
+            display: inline-block;
+            margin-bottom: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #4a5568;
+        }
+
+        /* Inputs and Select Box */
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 12px 14px;
+            margin-bottom: 18px;
+            border: 1.5px solid #cbd5e0;
+            border-radius: 6px;
+            font-size: 15px;
+            color: #2d3748;
+            background-color: #f8fafc;
+            outline: none;
+            transition: all 0.2s ease-in-out;
+        }
+
+        /* Focus States for Form Controls */
+        input[type="text"]:focus,
+        select:focus {
+            border-color: #667eea;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.25);
+        }
+
+        /* Calculate Button */
+        button[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background-color: #667eea;
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: background-color 0.2s ease-in-out, transform 0.1s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #5a67d8;
+        }
+
+        button[type="submit"]:active {
+            transform: scale(0.98);
+        }
+
+        /* Result Input Field (Disabled/Read-only Look) */
+        form input[type="text"]:last-of-type {
+            background-color: #edf2f7;
+            font-weight: bold;
+            color: #2b6cb0;
+            margin-bottom: 0; /* Remove bottom margin for last element */
+        }
+    </style>
+    <!-- INTERNAL CSS ENDS HERE 
+</head>
+<body>
+
+    <h1>Calculator</h1>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <label for="finput">First Number</label>
+        <input
+            type="text"
+            id="finput"
+            name="a"
+            placeholder="Enter the first number"
+            required
+        >
+
+        <label for="sinput">Second Number</label>
+        <input
+            type="text"
+            id="sinput"
+            name="b"
+            placeholder="Enter the second number"
+            required
+        >
+
+        <label for="opr">Select Operator</label>
+        <select name="opr" id="opr">
+            <option value="+">Addition (+)</option>
+            <option value="-">Subtraction (-)</option>
+            <option value="*">Multiplication (*)</option>
+            <option value="**">Exponent (**)</option>
+        </select>
+
+        <button type="submit">Calculate</button>
+
+        <label for="result">Result</label>
+        <input
+            type="text"
+            id="result"
+            value="{{solution}}"
+            placeholder="Result will appear here"
+            readonly
+        >
+    </form>
+
+</body>
+</html>
+--->
+
+
+<!---<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django Calculator</title>
+
+    <!-- INTERNAL CSS 
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #ffffff;
+            margin-bottom: 20px;
+            font-weight: 600;
+            text-transform: capitalize;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        form {
+            background-color: #ffffff;
+            padding: 30px 25px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 380px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        form:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25);
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #4a5568;
+        }
+
+        input[type="number"],
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1.5px solid #cbd5e0;
+            border-radius: 6px;
+            font-size: 15px;
+            color: #2d3748;
+            background-color: #f8fafc;
+            outline: none;
+            transition: all 0.2s ease-in-out;
+        }
+
+        input[type="number"]:focus,
+        input[type="text"]:focus,
+        select:focus {
+            border-color: #667eea;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.25);
+        }
+
+        /* Error state styling */
+        input.error {
+            border-color: #e53e3e !important;
+            background-color: #fff5f5 !important;
+        }
+
+        .error-message {
+            color: #e53e3e;
+            font-size: 12px;
+            margin-top: 4px;
+            display: none;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+
+        button {
+            flex: 1;
+            padding: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        button[type="submit"] {
+            background-color: #667eea;
+            color: #ffffff;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #5a67d8;
+        }
+
+        button[type="button"].btn-reset {
+            background-color: #edf2f7;
+            color: #4a5568;
+        }
+
+        button[type="button"].btn-reset:hover {
+            background-color: #e2e8f0;
+        }
+
+        button:active {
+            transform: scale(0.97);
+        }
+
+        /* Highlighted Result Field */
+        .result-field {
+            background-color: #edf2f7;
+            font-weight: 700;
+            color: #2b6cb0;
+            font-size: 18px !important;
+            text-align: center;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .result-field.updated {
+            animation: pulse 0.3s ease;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Calculator</h1>
+
+    <form method="post" id="calcForm">
+        {% csrf_token %}
+
+        <div class="input-group">
+            <label for="finput">First Number</label>
+            <input
+                type="number"
+                step="any"
+                id="finput"
+                name="a"
+                placeholder="Enter the first number"
+                required
+            >
+            <span class="error-message" id="error-a">Please enter a valid number</span>
+        </div>
+
+        <div class="input-group">
+            <label for="sinput">Second Number</label>
+            <input
+                type="number"
+                step="any"
+                id="sinput"
+                name="b"
+                placeholder="Enter the second number"
+                required
+            >
+            <span class="error-message" id="error-b">Please enter a valid number</span>
+        </div>
+
+        <div class="input-group">
+            <label for="opr">Select Operator</label>
+            <select name="opr" id="opr">
+                <option value="+">Addition (+)</option>
+                <option value="-">Subtraction (-)</option>
+                <option value="*">Multiplication (*)</option>
+                <option value="/">Division (/)</option>
+                <option value="**">Exponent (**)</option>
+            </select>
+        </div>
+
+        <div class="button-group">
+            <button type="submit" id="calcBtn">Calculate</button>
+            <button type="button" class="btn-reset" id="resetBtn">Clear</button>
+        </div>
+
+        <div class="input-group" style="margin-bottom: 0;">
+            <label for="result">Result</label>
+            <input
+                type="text"
+                id="result"
+                class="result-field"
+                value="{{solution}}"
+                placeholder="Result will appear here"
+                readonly
+            >
+        </div>
+    </form>
+
+    <!-- INTERNAL JAVASCRIPT STARTS HERE
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // DOM Elements
+            const form = document.getElementById('calcForm');
+            const num1Input = document.getElementById('finput');
+            const num2Input = document.getElementById('sinput');
+            const operatorSelect = document.getElementById('opr');
+            const resultInput = document.getElementById('result');
+            const resetBtn = document.getElementById('resetBtn');
+
+            // Perform calculation in JS
+            function calculate() {
+                const val1 = parseFloat(num1Input.value);
+                const val2 = parseFloat(num2Input.value);
+                const operator = operatorSelect.value;
+
+                // Stop if inputs are incomplete/invalid
+                if (isNaN(val1) || isNaN(val2)) {
+                    return;
+                }
+
+                let output = 0;
+
+                switch (operator) {
+                    case '+':
+                        output = val1 + val2;
+                        break;
+                    case '-':
+                        output = val1 - val2;
+                        break;
+                    case '*':
+                        output = val1 * val2;
+                        break;
+                    case '/':
+                        output = val2 !== 0 ? val1 / val2 : 'Cannot divide by zero';
+                        break;
+                    case '**':
+                        output = Math.pow(val1, val2);
+                        break;
+                    default:
+                        output = 'Invalid Operator';
+                }
+
+                // Format number if decimal is long
+                if (typeof output === 'number' && !Number.isInteger(output)) {
+                    output = parseFloat(output.toFixed(4));
+                }
+
+                // Render result with pulse animation
+                resultInput.value = output;
+                resultInput.classList.remove('updated');
+                void resultInput.offsetWidth; // Trigger reflow for CSS animation
+                resultInput.classList.add('updated');
+            }
+
+            // Real-Time Calculation on Input/Selection change
+            [num1Input, num2Input, operatorSelect].forEach(element => {
+                element.addEventListener('input', calculate);
+            });
+
+            // Prevent page refresh on submit if client calculation was done
+            form.addEventListener('submit', (e) => {
+                const val1 = parseFloat(num1Input.value);
+                const val2 = parseFloat(num2Input.value);
+
+                // If Javascript calculated it locally, prevent full reload
+                if (!isNaN(val1) && !isNaN(val2)) {
+                    e.preventDefault();
+                    calculate();
+                }
+            });
+
+            // Clear Button Logic
+            resetBtn.addEventListener('click', () => {
+                num1Input.value = '';
+                num2Input.value = '';
+                operatorSelect.selectedIndex = 0;
+                resultInput.value = '';
+
+                // Focus back to first input
+                num1Input.focus();
+            });
+
+            // Focus animation effect on inputs
+            const inputs = document.querySelectorAll('input[type="number"], select');
+            inputs.forEach(input => {
+                input.addEventListener('focus', function () {
+                    this.parentElement.style.transform = 'scale(1.01)';
+                    this.parentElement.style.transition = 'transform 0.15s ease';
+                });
+                input.addEventListener('blur', function () {
+                    this.parentElement.style.transform = 'scale(1)';
+                });
+            });
+        });
+    </script>
+    <!-- INTERNAL JAVASCRIPT ENDS HERE 
+
+</body>
+</html>
+---->
+
+
+
+
+
+<!---<html>
+<head>
+<title> Calculator</title>
+
+<style>
+    .calculator {
+        width: 300px;
+        margin: auto;
+        border: 5px solid #ccc;
+        padding: 10px;
+        box-shadow: 0 0 500px rgba(0, 0, 0, 0.1);
+    }
+    .calculator input[type="text"] {
+        width: calc(90% );
+        height: 50px;
+        margin-bottom: 10px;
+        font-size: 18px;
+        text-align: center;
+    }
+    .calculator input[type="button"] {
+        width: 80px;
+        height: 50px;
+        margin: 5px;
+        font-size:20px;
+    }
+</style>
+</head>
+<body>
+
+<div class="calculator">
+    <input type="text" id="display" value="">
+    <br>
+    <input type="button" value="7" onclick="addToDisplay('7')">
+    <input type="button" value="8" onclick="addToDisplay('8')">
+    <input type="button" value="9" onclick="addToDisplay('9')">
+    <br>
+    <input type="button" value="4" onclick="addToDisplay('4')">
+    <input type="button" value="5" onclick="addToDisplay('5')">
+    <input type="button" value="6" onclick="addToDisplay('6')">
+    <br>
+    <input type="button" value="1" onclick="addToDisplay('1')">
+    <input type="button" value="2" onclick="addToDisplay('2')">
+    <input type="button" value="3" onclick="addToDisplay('3')">
+    <br>
+    <input type="button" value="0" onclick="addToDisplay('0')">
+
+    
+    <input type="button" value="." onclick="addToDisplay('.')">
+    <input type="button" value="-" onclick="addToDisplay('-')">
+    <br>
+    <input type="button" value="/" onclick="addToDisplay('/')">
+    <input type="button" value="*" onclick="addToDisplay('*')">
+    <input type="button" value="+" onclick="addToDisplay('+')">
+    
+
+    <input type="button" value="=" onclick="calculate()">
+    <br>
+    <input type="button" value="C" onclick="clearDisplay()">
+</div>
+
+<script>
+    function addToDisplay(value) {
+        document.getElementById('display').value += value;
+    }
+
+    function clearDisplay() {
+        document.getElementById('display').value = '';
+    }
+
+    function calculate() {
+        try {
+            var result = eval(document.getElementById('display').value);
+            document.getElementById('display').value = result;
+        } catch (error) {
+            document.getElementById('display').value = 'Invalid Expression';
+        }
+    }
+</script>
+
+</body>
+</html>
+--->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Modern Calculator</title>
+
+    <style>
+        /* CSS Reset & Variable Design Tokens */
+        :root {
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #311042 100%);
+            --calc-bg: rgba(30, 41, 59, 0.7);
+            --calc-border: rgba(255, 255, 255, 0.12);
+            --display-bg: rgba(15, 23, 42, 0.85);
+            --btn-num-bg: rgba(51, 65, 85, 0.8);
+            --btn-num-hover: rgba(71, 85, 105, 0.9);
+            --btn-op-bg: #3b82f6;
+            --btn-op-hover: #2563eb;
+            --btn-clear-bg: #ef4444;
+            --btn-clear-hover: #dc2626;
+            --btn-equal-bg: #10b981;
+            --btn-equal-hover: #059669;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-glow: rgba(59, 130, 246, 0.35);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            user-select: none;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: var(--text-main);
+        }
+
+        /* App Container & Header */
+        .calculator-container {
+            width: 100%;
+            max-width: 360px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .calc-header {
+            text-align: center;
+        }
+
+        .calc-header h1 {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: #e2e8f0;
+        }
+
+        .calc-header p {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* Main Glassmorphism Calculator Frame */
+        .calculator {
+            background: var(--calc-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--calc-border);
+            border-radius: 24px;
+            padding: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 30px var(--accent-glow);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        /* Display Panel with History */
+        .display-screen {
+            background: var(--display-bg);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: space-between;
+            min-height: 90px;
+            word-break: break-all;
+            box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.4);
+        }
+
+        .history-preview {
+            font-size: 14px;
+            color: var(--text-muted);
+            min-height: 20px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            max-width: 100%;
+        }
+
+        .calculator input[type="text"] {
+            width: 100%;
+            background: transparent;
+            border: none;
+            outline: none;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text-main);
+            text-align: right;
+            box-shadow: none;
+        }
+
+        /* Keypad Grid Configuration */
+        .keypad {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        .calculator input[type="button"],
+        .calculator button {
+            width: 100%;
+            height: 56px;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-main);
+            background-color: var(--btn-num-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+            outline: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Button Hover & Active States */
+        .calculator input[type="button"]:hover,
+        .calculator button:hover {
+            background-color: var(--btn-num-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px -2px rgba(0, 0, 0, 0.3);
+        }
+
+        .calculator input[type="button"]:active,
+        .calculator button:active,
+        .calculator input[type="button"].active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Color Classification Modifiers */
+        .btn-operator {
+            background-color: var(--btn-op-bg) !important;
+            color: #ffffff !important;
+        }
+
+        .btn-operator:hover {
+            background-color: var(--btn-op-hover) !important;
+        }
+
+        .btn-clear {
+            background-color: var(--btn-clear-bg) !important;
+            color: #ffffff !important;
+        }
+
+        .btn-clear:hover {
+            background-color: var(--btn-clear-hover) !important;
+        }
+
+        .btn-equal {
+            background-color: var(--btn-equal-bg) !important;
+            color: #ffffff !important;
+            grid-column: span 2;
+        }
+
+        .btn-equal:hover {
+            background-color: var(--btn-equal-hover) !important;
+        }
+
+        .btn-backspace {
+            background-color: rgba(234, 179, 8, 0.85) !important;
+            color: #ffffff !important;
+        }
+
+        .btn-backspace:hover {
+            background-color: rgba(202, 138, 4, 1) !important;
+        }
+
+        /* Visual pulse effect on successful calculation */
+        .pulse-result {
+            animation: pulse 0.25s ease-in-out;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+
+        /* Responsive Mobile Tweak */
+        @media (max-width: 400px) {
+            .calculator {
+                padding: 18px;
+            }
+            .calculator input[type="button"],
+            .calculator button {
+                height: 50px;
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="calculator-container">
+        <div class="calc-header">
+            <h1>Calculator</h1>
+            <p>Interactive Math Engine with Keyboard Support</p>
+        </div>
+
+        <div class="calculator">
+            <!-- Screen with live preview history & input -->
+            <div class="display-screen">
+                <div class="history-preview" id="history"></div>
+                <input type="text" id="display" value="" placeholder="0" readonly>
+            </div>
+
+            <!-- Keypad Grid -->
+            <div class="keypad">
+                <input type="button" value="C" class="btn-clear" onclick="clearDisplay()" title="Clear (Escape)">
+                <input type="button" value="⌫" class="btn-backspace" onclick="backspace()" title="Backspace">
+                <input type="button" value="/" class="btn-operator" onclick="addToDisplay('/')">
+                <input type="button" value="*" class="btn-operator" onclick="addToDisplay('*')">
+
+                <input type="button" value="7" onclick="addToDisplay('7')">
+                <input type="button" value="8" onclick="addToDisplay('8')">
+                <input type="button" value="9" onclick="addToDisplay('9')">
+                <input type="button" value="-" class="btn-operator" onclick="addToDisplay('-')">
+
+                <input type="button" value="4" onclick="addToDisplay('4')">
+                <input type="button" value="5" onclick="addToDisplay('5')">
+                <input type="button" value="6" onclick="addToDisplay('6')">
+                <input type="button" value="+" class="btn-operator" onclick="addToDisplay('+')">
+
+                <input type="button" value="1" onclick="addToDisplay('1')">
+                <input type="button" value="2" onclick="addToDisplay('2')">
+                <input type="button" value="3" onclick="addToDisplay('3')">
+                <input type="button" value="." onclick="addToDisplay('.')">
+
+                <input type="button" value="0" onclick="addToDisplay('0')">
+                <input type="button" value="=" class="btn-equal" onclick="calculate()" title="Calculate (Enter)">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const display = document.getElementById('display');
+        const historyPreview = document.getElementById('history');
+        let isEvaluated = false;
+
+        // Append input characters to display
+        function addToDisplay(value) {
+            // Reset display if previous action was calculation or error
+            if (isEvaluated || display.value === 'Error') {
+                if (['+', '-', '*', '/'].includes(value)) {
+                    isEvaluated = false; // Carry forward result for chained operations
+                } else {
+                    display.value = '';
+                    isEvaluated = false;
+                }
+            }
+
+            // Prevent multiple trailing operators
+            const lastChar = display.value.slice(-1);
+            if (['+', '-', '*', '/'].includes(lastChar) && ['+', '-', '*', '/'].includes(value)) {
+                display.value = display.value.slice(0, -1) + value;
+                updatePreview();
+                return;
+            }
+
+            display.value += value;
+            updatePreview();
+        }
+
+        // Delete last typed character
+        function backspace() {
+            if (isEvaluated || display.value === 'Error') {
+                clearDisplay();
+                return;
+            }
+            display.value = display.value.slice(0, -1);
+            updatePreview();
+        }
+
+        // Clear display completely
+        function clearDisplay() {
+            display.value = '';
+            historyPreview.textContent = '';
+            isEvaluated = false;
+        }
+
+        // Live preview of expression calculation
+        function updatePreview() {
+            const expr = display.value;
+            if (!expr) {
+                historyPreview.textContent = '';
+                return;
+            }
+
+            try {
+                // Only attempt live preview if expression ends with a digit
+                if (/\d$/.test(expr)) {
+                    const result = safeEvaluate(expr);
+                    if (result !== undefined && !isNaN(result)) {
+                        historyPreview.textContent = '= ' + formatNumber(result);
+                    }
+                }
+            } catch (err) {
+                // Ignore incomplete syntax during intermediate typing
+            }
+        }
+
+        // Final Calculation Execution
+        function calculate() {
+            if (!display.value || display.value === 'Error') return;
+
+            try {
+                const expr = display.value;
+                const result = safeEvaluate(expr);
+
+                if (result === undefined || isNaN(result) || !isFinite(result)) {
+                    throw new Error("Invalid Math");
+                }
+
+                historyPreview.textContent = expr + ' =';
+                display.value = formatNumber(result);
+                isEvaluated = true;
+
+                // Visual Feedback Animation
+                display.parentElement.classList.remove('pulse-result');
+                void display.parentElement.offsetWidth; // Force reflow
+                display.parentElement.classList.add('pulse-result');
+            } catch (error) {
+                display.value = 'Error';
+                historyPreview.textContent = 'Invalid Expression';
+                isEvaluated = true;
+            }
+        }
+
+        // Safe Function Evaluator (Replaces plain unsafe eval)
+        function safeEvaluate(expr) {
+            // Sanitize string to allow only digits, mathematical operators, and decimals
+            if (!/^[0-9+\-*/.]*$/.test(expr)) {
+                throw new Error("Unsafe Input");
+            }
+            return Function('"use strict"; return (' + expr + ')')();
+        }
+
+        // Format clean decimal outputs
+        function formatNumber(num) {
+            if (Number.isInteger(num)) return num.toString();
+            return parseFloat(num.toFixed(8)).toString();
+        }
+
+        // Keyboard Shortcuts Support
+        document.addEventListener('keydown', (event) => {
+            const key = event.key;
+
+            if (key >= '0' && key <= '9') {
+                addToDisplay(key);
+            } else if (['+', '-', '*', '/'].includes(key)) {
+                addToDisplay(key);
+            } else if (key === '.' || key === ',') {
+                addToDisplay('.');
+            } else if (key === 'Enter' || key === '=') {
+                event.preventDefault();
+                calculate();
+            } else if (key === 'Backspace') {
+                backspace();
+            } else if (key === 'Escape') {
+                clearDisplay();
+            }
+        });
+    </script>
+</body>
+</html>
